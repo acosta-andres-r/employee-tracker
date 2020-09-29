@@ -1,5 +1,10 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
+const cTable = require('console.table');
+const util = require('util');
+const figlet = require('figlet');
+
+const figletAsync = util.promisify(figlet);
 
 // Create a connection to employees database
 const connection = mysql.createConnection({
@@ -24,7 +29,23 @@ connection.connect(function (err) {
 });
 
 
-function runCLIapp() {
+async function runCLIapp() {
+  try {
+    // Create FIGfont of Employee Manager as Header
+    console.log(await figletAsync("Employee"));
+    console.log(await figletAsync("Manager"));
+    console.log("");
+    console.log("");
+
+    // Run prompt with questions
+    startPrompt();
+
+  } catch (err) {
+    throw err
+  }
+}
+
+function startPrompt() {
   inquirer
     .prompt({
       name: "action",
@@ -50,8 +71,7 @@ function runCLIapp() {
     .then(function (answer) {
       switch (answer.action) {
         case "View All Employees":
-          // console.log("view all employees");
-          // viewAllEmployees();
+          viewAllEmployees();
           break;
 
         case "View All Employees by Department":
@@ -103,8 +123,9 @@ function runCLIapp() {
           break;
 
         case "Exit":
-
+          connection.end();
           break;
       }
     });
 }
+
