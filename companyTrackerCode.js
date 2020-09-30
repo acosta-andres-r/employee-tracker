@@ -84,7 +84,8 @@ function startPrompt() {
           break;
 
         case "View All Employees by Department":
-
+          await viewEmployees.byDepartment(connection)
+          startPrompt();
           break;
 
         case "View All Employees by Manager":
