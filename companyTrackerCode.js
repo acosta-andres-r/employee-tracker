@@ -62,6 +62,7 @@ function startPrompt() {
         "View All Employees",
         "View All Employees by Department",
         "View All Employees by Manager",
+        "View All Employees by Role",
         "Add New Employee",
         "Remove Employee",
         "Update Employee Role",
@@ -90,6 +91,11 @@ function startPrompt() {
 
         case "View All Employees by Manager":
           await viewEmployees.byManager(connection)
+          startPrompt();
+          break;
+        
+          case "View All Employees by Role":
+          await viewEmployees.byRole(connection)
           startPrompt();
           break;
 
