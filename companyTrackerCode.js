@@ -1,11 +1,17 @@
+// REQUIRE
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 const cTable = require('console.table');
 const util = require('util');
 const figlet = require('figlet');
 
+// MODULES
+const viewEmployees = require('./lib/view-employees')
+
+// PROMISE
 const figletAsync = util.promisify(figlet);
 
+// SERVER CONNECTION
 // Create a connection to employees database
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -28,7 +34,7 @@ connection.connect(function (err) {
   runCLIapp();
 });
 
-
+// FUCTIONS
 async function runCLIapp() {
   try {
     // Create FIGfont of Employee Manager as Header
@@ -38,6 +44,7 @@ async function runCLIapp() {
     console.log("");
 
     // Run prompt with questions
+    console.log("HERE");
     startPrompt();
 
   } catch (err) {
@@ -68,10 +75,12 @@ function startPrompt() {
         "Exit"
       ]
     })
-    .then(function (answer) {
+    .then(async function (answer) {
+      try {
       switch (answer.action) {
         case "View All Employees":
-          viewAllEmployees();
+          await viewEmployees.all(connection);
+          startPrompt();
           break;
 
         case "View All Employees by Department":
@@ -126,32 +135,9 @@ function startPrompt() {
           connection.end();
           break;
       }
+    } 
+    catch (err) {
+      throw err
+    }
     });
-}
-
-function viewAllEmployees() {
-  let query =
-    `SELECT 
-      e.id, 
-      e.first_name, 
-      e.last_name, 
-      r.title, 
-      d.name AS department,
-      r.salary, 
-      CONCAT(m.first_name, ' ', m.last_name) AS manager
-    FROM employee e
-    LEFT JOIN employee m ON e.manager_id = m.id
-    JOIN role r ON e.role_id = r.id
-    JOIN department d ON r.department_id = d.id`;
-
-  connection.query(query, function (err, res) {
-    if (err) console.error(err);
-
-    console.log('');
-    console.log('');
-    console.table(res);
-    console.log('');
-
-    startPrompt();
-  });
 }
