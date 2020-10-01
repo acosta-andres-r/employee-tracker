@@ -125,7 +125,8 @@ function startPrompt() {
             break;
 
           case "Update Employee Manager":
-
+            await updateEmployees.updateManager(connection);
+            startPrompt();
             break;
 
           case "View All Roles":
