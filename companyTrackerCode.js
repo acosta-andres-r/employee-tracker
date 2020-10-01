@@ -69,6 +69,7 @@ function startPrompt() {
         "View All Employees by Role",
         "Add New Employee",
         "Remove Employee",
+        "Update Employee's names",
         "Update Employee Role",
         "Update Employee Manager",
         "View All Roles",
@@ -76,83 +77,88 @@ function startPrompt() {
         "Remove Role",
         "Add New Department",
         "Remove Department",
-        "View Budget of a Department",
+        "View Budget of Department",
         "Exit"
       ]
     })
     .then(async function (answer) {
       try {
-      switch (answer.action) {
-        case "View All Employees":
-          await viewEmployees.all(connection);
-          startPrompt();
-          break;
+        switch (answer.action) {
+          case "View All Employees":
+            await viewEmployees.all(connection);
+            startPrompt();
+            break;
 
-        case "View All Employees by Department":
-          await viewEmployees.byDepartment(connection);
-          startPrompt();
-          break;
+          case "View All Employees by Department":
+            await viewEmployees.byDepartment(connection);
+            startPrompt();
+            break;
 
-        case "View All Employees by Manager":
-          await viewEmployees.byManager(connection);
-          startPrompt();
-          break;
-        
+          case "View All Employees by Manager":
+            await viewEmployees.byManager(connection);
+            startPrompt();
+            break;
+
           case "View All Employees by Role":
-          await viewEmployees.byRole(connection);
-          startPrompt();
-          break;
+            await viewEmployees.byRole(connection);
+            startPrompt();
+            break;
 
-        case "Add New Employee":
-          await addEmployees.newOne(connection);
-          startPrompt();
-          break;
+          case "Add New Employee":
+            await addEmployees.newOne(connection);
+            startPrompt();
+            break;
 
-        case "Remove Employee":
-          await removeEmployees.deleteOne(connection);
-          startPrompt();
-          break;
+          case "Remove Employee":
+            await removeEmployees.deleteOne(connection);
+            startPrompt();
+            break;
 
-        case "Update Employee Role":
-          await removeEmployees.deleteOne(connection);
-          startPrompt();
-          break;
+          case "Update Employee's names":
+            await updateEmployees.updateName(connection);
+            startPrompt();
+            break;
 
-        case "Update Employee Manager":
+          case "Update Employee Role":
+            await updateEmployees.updateRole(connection);
+            startPrompt();
+            break;
 
-          break;
+          case "Update Employee Manager":
 
-        case "View All Roles":
+            break;
 
-          break;
+          case "View All Roles":
 
-        case "Add New Role":
+            break;
 
-          break;
+          case "Add New Role":
 
-        case "Remove Role":
+            break;
 
-          break;
+          case "Remove Role":
 
-        case "Add New Department":
+            break;
 
-          break;
+          case "Add New Department":
 
-        case "Remove Department":
+            break;
 
-          break;
+          case "Remove Department":
 
-        case "View Budget of a Department":
+            break;
 
-          break;
+          case "View Budget of Department":
 
-        case "Exit":
-          connection.end();
-          break;
+            break;
+
+          case "Exit":
+            connection.end();
+            break;
+        }
       }
-    } 
-    catch (err) {
-      throw err
-    }
+      catch (err) {
+        throw err
+      }
     });
 }
