@@ -8,6 +8,8 @@ const figlet = require('figlet');
 // MODULES
 const viewEmployees = require('./lib/view-employees')
 const addEmployees = require('./lib/add-employees')
+const removeEmployees = require('./lib/remove-employees')
+const updateEmployees = require('./lib/update-employees')
 
 
 // PROMISE
@@ -103,16 +105,17 @@ function startPrompt() {
 
         case "Add New Employee":
           await addEmployees.newOne(connection);
-          console.log("here");
           startPrompt();
           break;
 
         case "Remove Employee":
-
+          await removeEmployees.deleteOne(connection);
+          startPrompt();
           break;
 
         case "Update Employee Role":
-
+          await removeEmployees.deleteOne(connection);
+          startPrompt();
           break;
 
         case "Update Employee Manager":
