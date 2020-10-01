@@ -75,6 +75,7 @@ function startPrompt() {
         "View All Roles",
         "Add new Role",
         "Remove Role",
+        "View All Departments",
         "Add New Department",
         "Remove Department",
         "View Budget of Department",
@@ -130,7 +131,8 @@ function startPrompt() {
             break;
 
           case "View All Roles":
-
+            await viewEmployees.onlyRoles(connection);
+            startPrompt();
             break;
 
           case "Add New Role":
@@ -139,6 +141,11 @@ function startPrompt() {
 
           case "Remove Role":
 
+            break;
+
+          case "View All Departments":
+            await viewEmployees.onlyDepartments(connection);
+            startPrompt();
             break;
 
           case "Add New Department":
