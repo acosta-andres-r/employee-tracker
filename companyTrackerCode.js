@@ -69,7 +69,7 @@ function startPrompt() {
         "View All Employees by Role",
         "Add New Employee",
         "Remove Employee",
-        "Update Employee's names",
+        "Update Employee Names",
         "Update Employee Role",
         "Update Employee Manager",
         "View All Roles",
@@ -114,7 +114,7 @@ function startPrompt() {
             startPrompt();
             break;
 
-          case "Update Employee's names":
+          case "Update Employee Names":
             await updateEmployees.updateName(connection);
             startPrompt();
             break;
