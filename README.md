@@ -18,7 +18,7 @@ With this **Command-Line Interface** application, the user will be able to view 
   * [Questions](#questions)
 
 ### Installation
-*Prerequisite:* Node.js installed.
+*Prerequisite:* Node.js and MySQL installed.
 
 In terminal run: ```npm install```
 
