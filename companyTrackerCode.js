@@ -7,6 +7,8 @@ const figlet = require('figlet');
 
 // MODULES
 const viewEmployees = require('./lib/view-employees')
+const addEmployees = require('./lib/add-employees')
+
 
 // PROMISE
 const figletAsync = util.promisify(figlet);
@@ -85,22 +87,24 @@ function startPrompt() {
           break;
 
         case "View All Employees by Department":
-          await viewEmployees.byDepartment(connection)
+          await viewEmployees.byDepartment(connection);
           startPrompt();
           break;
 
         case "View All Employees by Manager":
-          await viewEmployees.byManager(connection)
+          await viewEmployees.byManager(connection);
           startPrompt();
           break;
         
           case "View All Employees by Role":
-          await viewEmployees.byRole(connection)
+          await viewEmployees.byRole(connection);
           startPrompt();
           break;
 
         case "Add New Employee":
-
+          await addEmployees.newOne(connection);
+          console.log("here");
+          startPrompt();
           break;
 
         case "Remove Employee":
