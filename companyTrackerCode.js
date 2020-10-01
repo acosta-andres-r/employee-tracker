@@ -141,7 +141,8 @@ function startPrompt() {
             break;
 
           case "Remove Role":
-
+            await removeEmployees.deleteRole(connection);
+            startPrompt();
             break;
 
           case "View All Departments":
@@ -155,7 +156,8 @@ function startPrompt() {
             break;
 
           case "Remove Department":
-
+            await removeEmployees.deleteDepartment(connection);
+            startPrompt();
             break;
 
           case "View Budget of Department":
