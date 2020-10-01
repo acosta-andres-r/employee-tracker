@@ -73,7 +73,7 @@ function startPrompt() {
         "Update Employee Role",
         "Update Employee Manager",
         "View All Roles",
-        "Add new Role",
+        "Add New Role",
         "Remove Role",
         "View All Departments",
         "Add New Department",
@@ -136,7 +136,8 @@ function startPrompt() {
             break;
 
           case "Add New Role":
-
+            await addEmployees.newRole(connection);
+            startPrompt();
             break;
 
           case "Remove Role":
@@ -149,7 +150,8 @@ function startPrompt() {
             break;
 
           case "Add New Department":
-
+            await addEmployees.newDepartment(connection);
+            startPrompt();
             break;
 
           case "Remove Department":
