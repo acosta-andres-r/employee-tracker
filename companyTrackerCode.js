@@ -78,7 +78,7 @@ function startPrompt() {
         "View All Departments",
         "Add New Department",
         "Remove Department",
-        "View Budget of Department",
+        "View Utilized Budget of Department",
         "Exit"
       ]
     })
@@ -160,8 +160,9 @@ function startPrompt() {
             startPrompt();
             break;
 
-          case "View Budget of Department":
-
+          case "View Utilized Budget of Department":
+            await viewEmployees.departmentBudget(connection);
+            startPrompt();
             break;
 
           case "Exit":
