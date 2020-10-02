@@ -28,6 +28,11 @@ In terminal run: ```node companyTrackerCode.js```
 
 Demo:
 
+
+![](demo/employee-tracker.gif)
+
+[Link to video](https://drive.google.com/file/d/10eI6eeLcsnCxHDJuS7qxMz5mXZ1_Fwp8/view?usp=sharing)
+
 ### License
 
 Copyright (c) Andres Acosta. All rights reserved.
